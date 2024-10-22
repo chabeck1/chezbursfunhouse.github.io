@@ -1,159 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- [Previous head content remains the same] -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloons TD 2 - Chezbur's Funhouse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://happygamer1450.github.io/Ruffle-Embedded/ruffle/ruffle.js"></script>
     <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            padding: 10px;
+            border-radius: 12px;
+            width: fit-content;
+            margin: 0 auto;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 40px rgba(240, 240, 240, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #1f2937;
-            min-width: 200px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            z-index: 1000;
-            border-radius: 0.5rem;
-            margin-top: 0.5rem;
-            padding: 0.5rem 0;
+        .swf {
+            line-height: 0;
         }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
+        .game-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #87CEEB, #4682B4);
+            -webkit-background-clip: text;
+            background-clip: text;          /* Add this line */
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(135, 206, 235, 0.3);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
         }
-
-        .dropdown-link {
-            display: block;
-            padding: 0.5rem 1rem;
-            color: #9ca3af;
-            text-decoration: none;
-            transition: background-color 0.2s;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
-
-        .dropdown-link:hover {
-            background-color: #374151;
-            color: #a855f7;
-        }
-
-        .category-header {
-            padding: 0.5rem 1rem;
-            font-weight: 600;
-            color: #a855f7;
-            font-size: 0.875rem;
-            background-color: #1a1f2b;
-        }
-
-        .mobile-menu {
-            display: none;
-        }
-        
-        .mobile-menu.active {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .desktop-menu {
-                display: none;
-            }
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                margin-left: 1rem;
-            }
+        .game-title {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen bg-gray-900 text-white">
     <!-- Navigation Bar -->
     <nav class="bg-gray-800 px-4 py-3">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-purple-400">Chezbur's Fun House</a>
-            
-            <!-- Desktop Navigation -->
-            <div class="desktop-menu flex items-center gap-6">
-                <!-- Games Dropdown -->
-                <div class="dropdown">
-                    <button class="hover:text-purple-400 flex items-center gap-1">
-                        Games
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="dropdown-content">
-                        <div class="category-header">Tower Defense</div>
-                        <a href="games/bloonstd2.html" class="dropdown-link">Bloons TD 2</a>
-                        
-                        <div class="category-header">Puzzle</div>
-                        <a href="games/2048.html" class="dropdown-link">2048</a>
-                        <a href="games/tetris.html" class="dropdown-link">Tetris</a>
-                        
-                        <div class="category-header">Classic</div>
-                        <a href="games/snake.html" class="dropdown-link">Snake</a>
-                        <a href="games/minesweeper.html" class="dropdown-link">Minesweeper</a>
-                    </div>
-                </div>
-                <a href="/about" class="hover:text-purple-400">About</a>
-                <a href="/contact" class="hover:text-purple-400">Contact</a>
+            <a href="/" class="text-2xl font-bold text-purple-400">Chezbur's Funhouse</a>
+            <div class="flex items-center gap-6">
+                <a href="/" class="hover:text-purple-400">Home</a>
+                <a href="/#games" class="hover:text-purple-400">Games</a>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button 
-                onclick="toggleMenu()"
-                class="md:hidden text-white"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu md:hidden mt-2 space-y-2">
-            <!-- Mobile Games Menu -->
-            <div class="space-y-2">
-                <button 
-                    onclick="toggleGamesMenu()" 
-                    class="flex items-center justify-between w-full py-2 hover:text-purple-400"
-                >
-                    <span>Games</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div id="mobileGamesMenu" class="hidden">
-                    <div class="category-header">Tower Defense</div>
-                    <a href="games/bloonstd2.html" class="dropdown-link">Bloons TD 2</a>
-                    
-                    <div class="category-header">Puzzle</div>
-                    <a href="games/2048.html" class="dropdown-link">2048</a>
-                    <a href="games/tetris.html" class="dropdown-link">Tetris</a>
-                    
-                    <div class="category-header">Classic</div>
-                    <a href="games/snake.html" class="dropdown-link">Snake</a>
-                    <a href="games/minesweeper.html" class="dropdown-link">Minesweeper</a>
-                </div>
-            </div>
-            <a href="/about" class="block py-2 hover:text-purple-400">About</a>
-            <a href="/contact" class="block py-2 hover:text-purple-400">Contact</a>
         </div>
     </nav>
 
-    <!-- [Rest of your content remains the same] -->
+    <!-- Game Container -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="game-title">Bloons TD 2</h1>
+        <div class="game-container">
+            <div class="swf" dir="ltr">
+                <embed 
+                    height="480" 
+                    pluginspage="http://www.macromedia.com/go/getflashplayer" 
+                    src="https://chuckmunch.github.io/bloonstd2/bloonstd2.swf" 
+                    type="application/x-shockwave-flash" 
+                    width="620">
+                </embed>
+            </div>
+        </div>
+        
+        <!-- Game Controls/Instructions -->
+        <div class="mt-6 bg-gray-800 rounded-lg p-6">
+            <h2 class="text-xl font-bold mb-3">How to Play Bloons TD 2</h2>
+            <p class="text-gray-300">
+                Place towers strategically to pop all the balloons before they reach the end of the path. Earn money by popping balloons and upgrade your towers to handle stronger waves!
+            </p>
+            <ul class="list-disc list-inside mt-3 text-gray-300">
+                <li>Click to place towers</li>
+                <li>Upgrade towers by clicking on them</li>
+                <li>Different towers are effective against different types of balloons</li>
+                <li>Watch out for special balloon types!</li>
+            </ul>
+        </div>
+    </div>
 
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-
-        function toggleGamesMenu() {
-            const gamesMenu = document.getElementById('mobileGamesMenu');
-            gamesMenu.classList.toggle('hidden');
-        }
-    </script>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center py-6 mt-12">
+        <p class="text-gray-400">© 2024 Chezbur's Funhouse. All rights reserved.</p>
+    </footer>
 </body>
 </html>
