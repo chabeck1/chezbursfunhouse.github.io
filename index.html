@@ -1,1 +1,105 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chez's Fun House - Unblocked Games</title>
+    <!-- Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-white">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-purple-400">Chez's Fun House</a>
+            
+            <!-- Mobile Menu Button -->
+            <button 
+                onclick="toggleMenu()"
+                class="md:hidden text-white"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Desktop Navigation -->
+            <div class="desktop-menu flex items-center gap-6">
+                <a href="#games" class="hover:text-purple-400 flex items-center gap-1">
+                    Games
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </a>
+                <a href="/about" class="hover:text-purple-400">About</a>
+                <a href="/contact" class="hover:text-purple-400">Contact</a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden mt-2 space-y-2">
+            <a href="#games" class="block py-2 hover:text-purple-400">Games</a>
+            <a href="/about" class="block py-2 hover:text-purple-400">About</a>
+            <a href="/contact" class="block py-2 hover:text-purple-400">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="py-16 px-4 text-center bg-gradient-to-b from-gray-800 to-gray-900">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Chez's Fun House</h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Your ultimate destination for free unblocked games. Play instantly in your browser!
+        </p>
+    </div>
+
+    <!-- Games Grid -->
+    <section id="games" class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8 text-center">Featured Games</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="/games/snake" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-purple-400">Snake</h3>
+                <p class="text-gray-300">Classic snake game - eat the food and grow longer!</p>
+            </a>
+            <a href="/games/tetris" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-purple-400">Tetris</h3>
+                <p class="text-gray-300">Stack blocks and clear lines in this timeless puzzle game</p>
+            </a>
+            <a href="/games/2048" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-purple-400">2048</h3>
+                <p class="text-gray-300">Merge numbers to reach 2048 in this addictive puzzle game</p>
+            </a>
+            <a href="/games/minesweeper" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-purple-400">Minesweeper</h3>
+                <p class="text-gray-300">Clear the minefield without hitting any bombs</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center py-6 mt-12">
+        <p class="text-gray-400">© 2024 Chez's Fun House. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
