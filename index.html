@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chezbur's Funhouse - Unblocked Games</title>
+    <title>Chezbur's Fun House - Unblocked Games</title>
     <!-- Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1f2937;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         .mobile-menu {
             display: none;
         }
@@ -19,6 +41,11 @@
             .desktop-menu {
                 display: none;
             }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                margin-left: 1rem;
+            }
         }
     </style>
 </head>
@@ -26,7 +53,7 @@
     <!-- Navigation Bar -->
     <nav class="bg-gray-800 px-4 py-3">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-purple-400">Chezbur's Funhouse</a>
+            <a href="/" class="text-2xl font-bold text-purple-400">Chezbur's Fun House</a>
             
             <!-- Mobile Menu Button -->
             <button 
@@ -40,12 +67,30 @@
 
             <!-- Desktop Navigation -->
             <div class="desktop-menu flex items-center gap-6">
-                <a href="#games" class="hover:text-purple-400 flex items-center gap-1">
-                    Games
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </a>
+                <!-- Games Dropdown -->
+                <div class="dropdown">
+                    <button class="hover:text-purple-400 flex items-center gap-1">
+                        Games
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="dropdown-content">
+                        <!-- Tower Defense Category -->
+                        <div class="px-4 py-2 text-sm font-semibold text-purple-400">Tower Defense</div>
+                        <a href="/games/bloonstd2.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Bloons TD 2</a>
+                        
+                        <!-- Puzzle Games Category -->
+                        <div class="px-4 py-2 text-sm font-semibold text-purple-400">Puzzle</div>
+                        <a href="/games/2048.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">2048</a>
+                        <a href="/games/tetris.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Tetris</a>
+                        
+                        <!-- Classic Games Category -->
+                        <div class="px-4 py-2 text-sm font-semibold text-purple-400">Classic</div>
+                        <a href="/games/snake.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Snake</a>
+                        <a href="/games/minesweeper.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Minesweeper</a>
+                    </div>
+                </div>
                 <a href="/about" class="hover:text-purple-400">About</a>
                 <a href="/contact" class="hover:text-purple-400">Contact</a>
             </div>
@@ -53,7 +98,27 @@
 
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="mobile-menu md:hidden mt-2 space-y-2">
-            <a href="#games" class="block py-2 hover:text-purple-400">Games</a>
+            <!-- Mobile Games Dropdown -->
+            <div class="dropdown w-full">
+                <button class="block py-2 hover:text-purple-400 w-full text-left" onclick="toggleGamesMenu()">
+                    Games
+                </button>
+                <div id="mobileGamesMenu" class="dropdown-content">
+                    <!-- Tower Defense Category -->
+                    <div class="px-4 py-2 text-sm font-semibold text-purple-400">Tower Defense</div>
+                    <a href="/games/bloonstd2.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Bloons TD 2</a>
+                    
+                    <!-- Puzzle Games Category -->
+                    <div class="px-4 py-2 text-sm font-semibold text-purple-400">Puzzle</div>
+                    <a href="/games/2048.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">2048</a>
+                    <a href="/games/tetris.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Tetris</a>
+                    
+                    <!-- Classic Games Category -->
+                    <div class="px-4 py-2 text-sm font-semibold text-purple-400">Classic</div>
+                    <a href="/games/snake.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Snake</a>
+                    <a href="/games/minesweeper.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Minesweeper</a>
+                </div>
+            </div>
             <a href="/about" class="block py-2 hover:text-purple-400">About</a>
             <a href="/contact" class="block py-2 hover:text-purple-400">Contact</a>
         </div>
@@ -61,45 +126,36 @@
 
     <!-- Hero Section -->
     <div class="py-16 px-4 text-center bg-gradient-to-b from-gray-800 to-gray-900">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Chezbur's Funhouse</h1>
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Chezbur's Fun House</h1>
         <p class="text-xl text-gray-300 max-w-2xl mx-auto">
             Your ultimate destination for free unblocked games. Play instantly in your browser!
         </p>
     </div>
 
-    <!-- Games Grid -->
+    <!-- Featured Games Grid -->
     <section id="games" class="max-w-7xl mx-auto px-4 py-12">
         <h2 class="text-3xl font-bold mb-8 text-center">Featured Games</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a href="/games/snake" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+            <!-- Add your new game card -->
+            <a href="/games/bloonstd2.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-purple-400">Bloons TD 2</h3>
+                <p class="text-gray-300">Strategic tower defense game - pop balloons before they escape!</p>
+            </a>
+            
+            <!-- Existing game cards -->
+            <a href="/games/snake.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
                 <h3 class="text-xl font-bold mb-2 text-purple-400">Snake</h3>
                 <p class="text-gray-300">Classic snake game - eat the food and grow longer!</p>
             </a>
-            <a href="/games/bloonstd2.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
-                <h3 class="text-xl font-bold mb-2 text-purple-400">Game Title</h3>
-                <p class="text-gray-300">Game description goes here</p>
-            </a>
-            <a href="/games/bloonstd2.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
-                <h3 class="text-xl font-bold mb-2 text-purple-400">Game Title</h3>
-                <p class="text-gray-300">Game description goes here</p>
-            </a>
-            <a href="/games/bloonstd2.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
-                <h3 class="text-xl font-bold mb-2 text-purple-400">Game Title</h3>
-                <p class="text-gray-300">Game description goes here</p>
-            </a>
-            <a href="/games/bloonstd2.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
-                <h3 class="text-xl font-bold mb-2 text-purple-400">Game Title</h3>
-                <p class="text-gray-300">Game description goes here</p>
-            </a>
-            <a href="/games/tetris" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+            <a href="/games/tetris.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
                 <h3 class="text-xl font-bold mb-2 text-purple-400">Tetris</h3>
                 <p class="text-gray-300">Stack blocks and clear lines in this timeless puzzle game</p>
             </a>
-            <a href="/games/2048" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+            <a href="/games/2048.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
                 <h3 class="text-xl font-bold mb-2 text-purple-400">2048</h3>
                 <p class="text-gray-300">Merge numbers to reach 2048 in this addictive puzzle game</p>
             </a>
-            <a href="/games/minesweeper" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
+            <a href="/games/minesweeper.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
                 <h3 class="text-xl font-bold mb-2 text-purple-400">Minesweeper</h3>
                 <p class="text-gray-300">Clear the minefield without hitting any bombs</p>
             </a>
@@ -108,13 +164,18 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-center py-6 mt-12">
-        <p class="text-gray-400">© 2024 Chezbur's Funhouse. All rights reserved.</p>
+        <p class="text-gray-400">© 2024 Chezbur's Fun House. All rights reserved.</p>
     </footer>
 
     <script>
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
+        }
+
+        function toggleGamesMenu() {
+            const gamesMenu = document.getElementById('mobileGamesMenu');
+            gamesMenu.style.display = gamesMenu.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>

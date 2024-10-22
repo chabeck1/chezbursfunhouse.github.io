@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- [Previous head content remains the same] -->
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1f2937;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-link:hover {
+            background-color: #374151;
+            color: #a855f7;
+        }
+
+        .category-header {
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            color: #a855f7;
+            font-size: 0.875rem;
+            background-color: #1a1f2b;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-purple-400">Chezbur's Fun House</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="desktop-menu flex items-center gap-6">
+                <!-- Games Dropdown -->
+                <div class="dropdown">
+                    <button class="hover:text-purple-400 flex items-center gap-1">
+                        Games
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="category-header">Tower Defense</div>
+                        <a href="games/bloonstd2.html" class="dropdown-link">Bloons TD 2</a>
+                        
+                        <div class="category-header">Puzzle</div>
+                        <a href="games/2048.html" class="dropdown-link">2048</a>
+                        <a href="games/tetris.html" class="dropdown-link">Tetris</a>
+                        
+                        <div class="category-header">Classic</div>
+                        <a href="games/snake.html" class="dropdown-link">Snake</a>
+                        <a href="games/minesweeper.html" class="dropdown-link">Minesweeper</a>
+                    </div>
+                </div>
+                <a href="/about" class="hover:text-purple-400">About</a>
+                <a href="/contact" class="hover:text-purple-400">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button 
+                onclick="toggleMenu()"
+                class="md:hidden text-white"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden mt-2 space-y-2">
+            <!-- Mobile Games Menu -->
+            <div class="space-y-2">
+                <button 
+                    onclick="toggleGamesMenu()" 
+                    class="flex items-center justify-between w-full py-2 hover:text-purple-400"
+                >
+                    <span>Games</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobileGamesMenu" class="hidden">
+                    <div class="category-header">Tower Defense</div>
+                    <a href="games/bloonstd2.html" class="dropdown-link">Bloons TD 2</a>
+                    
+                    <div class="category-header">Puzzle</div>
+                    <a href="games/2048.html" class="dropdown-link">2048</a>
+                    <a href="games/tetris.html" class="dropdown-link">Tetris</a>
+                    
+                    <div class="category-header">Classic</div>
+                    <a href="games/snake.html" class="dropdown-link">Snake</a>
+                    <a href="games/minesweeper.html" class="dropdown-link">Minesweeper</a>
+                </div>
+            </div>
+            <a href="/about" class="block py-2 hover:text-purple-400">About</a>
+            <a href="/contact" class="block py-2 hover:text-purple-400">Contact</a>
+        </div>
+    </nav>
+
+    <!-- [Rest of your content remains the same] -->
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleGamesMenu() {
+            const gamesMenu = document.getElementById('mobileGamesMenu');
+            gamesMenu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
