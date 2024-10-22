@@ -19,22 +19,32 @@
             left: 0;
             background-color: #1f2937;
             min-width: 200px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             z-index: 1000;
             border-radius: 0.5rem;
             margin-top: 0.5rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
-        .dropdown:hover .dropdown-content {
+        .dropdown-content.show {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .mobile-menu {
             display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
         
         .mobile-menu.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 768px) {
@@ -57,8 +67,8 @@
             
             <!-- Mobile Menu Button -->
             <button 
-                onclick="toggleMenu()"
-                class="md:hidden text-white"
+                id="mobileMenuButton"
+                class="md:hidden text-white p-2 hover:bg-gray-700 rounded-lg transition-colors"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -69,24 +79,19 @@
             <div class="desktop-menu flex items-center gap-6">
                 <!-- Games Dropdown -->
                 <div class="dropdown">
-                    <button class="hover:text-purple-400 flex items-center gap-1">
+                    <button 
+                        id="gamesDropdownButton"
+                        class="hover:text-purple-400 flex items-center gap-1 px-3 py-2 rounded-lg transition-colors"
+                    >
                         Games
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="dropdown-content">
-                        <!-- Tower Defense Category -->
-                        <div class="px-4 py-2 text-sm font-semibold text-purple-400">Tower Defense</div>
+                    <div id="gamesDropdown" class="dropdown-content">
                         <a href="/games/bloonstd2.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Bloons TD 2</a>
-                        
-                        <!-- Puzzle Games Category -->
-                        <div class="px-4 py-2 text-sm font-semibold text-purple-400">Puzzle</div>
                         <a href="/games/2048.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">2048</a>
                         <a href="/games/tetris.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Tetris</a>
-                        
-                        <!-- Classic Games Category -->
-                        <div class="px-4 py-2 text-sm font-semibold text-purple-400">Classic</div>
                         <a href="/games/snake.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Snake</a>
                         <a href="/games/minesweeper.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Minesweeper</a>
                     </div>
@@ -100,27 +105,22 @@
         <div id="mobileMenu" class="mobile-menu md:hidden mt-2 space-y-2">
             <!-- Mobile Games Dropdown -->
             <div class="dropdown w-full">
-                <button class="block py-2 hover:text-purple-400 w-full text-left" onclick="toggleGamesMenu()">
+                <button 
+                    id="mobileGamesButton"
+                    class="block py-2 hover:text-purple-400 w-full text-left px-4"
+                >
                     Games
                 </button>
-                <div id="mobileGamesMenu" class="dropdown-content">
-                    <!-- Tower Defense Category -->
-                    <div class="px-4 py-2 text-sm font-semibold text-purple-400">Tower Defense</div>
+                <div id="mobileGamesMenu" class="dropdown-content w-full">
                     <a href="/games/bloonstd2.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Bloons TD 2</a>
-                    
-                    <!-- Puzzle Games Category -->
-                    <div class="px-4 py-2 text-sm font-semibold text-purple-400">Puzzle</div>
                     <a href="/games/2048.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">2048</a>
                     <a href="/games/tetris.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Tetris</a>
-                    
-                    <!-- Classic Games Category -->
-                    <div class="px-4 py-2 text-sm font-semibold text-purple-400">Classic</div>
                     <a href="/games/snake.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Snake</a>
                     <a href="/games/minesweeper.html" class="block px-4 py-2 hover:bg-gray-700 text-gray-300">Minesweeper</a>
                 </div>
             </div>
-            <a href="/about" class="block py-2 hover:text-purple-400">About</a>
-            <a href="/contact" class="block py-2 hover:text-purple-400">Contact</a>
+            <a href="/about" class="block py-2 hover:text-purple-400 px-4">About</a>
+            <a href="/contact" class="block py-2 hover:text-purple-400 px-4">Contact</a>
         </div>
     </nav>
 
@@ -136,13 +136,10 @@
     <section id="games" class="max-w-7xl mx-auto px-4 py-12">
         <h2 class="text-3xl font-bold mb-8 text-center">Featured Games</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Add your new game card -->
             <a href="/games/bloonstd2.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
                 <h3 class="text-xl font-bold mb-2 text-purple-400">Bloons TD 2</h3>
                 <p class="text-gray-300">Strategic tower defense game - pop balloons before they escape!</p>
             </a>
-            
-            <!-- Existing game cards -->
             <a href="/games/snake.html" class="block bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors">
                 <h3 class="text-xl font-bold mb-2 text-purple-400">Snake</h3>
                 <p class="text-gray-300">Classic snake game - eat the food and grow longer!</p>
@@ -168,15 +165,46 @@
     </footer>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
+        // Desktop dropdown functionality
+        const gamesButton = document.getElementById('gamesDropdownButton');
+        const gamesDropdown = document.getElementById('gamesDropdown');
+        let isDropdownOpen = false;
+
+        function toggleDropdown() {
+            isDropdownOpen = !isDropdownOpen;
+            gamesDropdown.classList.toggle('show', isDropdownOpen);
+            
+            // Rotate arrow icon
+            const arrow = gamesButton.querySelector('svg');
+            arrow.style.transform = isDropdownOpen ? 'rotate(180deg)' : '';
         }
 
-        function toggleGamesMenu() {
-            const gamesMenu = document.getElementById('mobileGamesMenu');
-            gamesMenu.style.display = gamesMenu.style.display === 'block' ? 'none' : 'block';
-        }
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            const isClickInside = gamesButton.contains(event.target) || gamesDropdown.contains(event.target);
+            if (!isClickInside && isDropdownOpen) {
+                toggleDropdown();
+            }
+        });
+
+        gamesButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleDropdown();
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileGamesButton = document.getElementById('mobileGamesButton');
+        const mobileGamesMenu = document.getElementById('mobileGamesMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileGamesButton.addEventListener('click', () => {
+            mobileGamesMenu.classList.toggle('show');
+        });
     </script>
 </body>
 </html>
