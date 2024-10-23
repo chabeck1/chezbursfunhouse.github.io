@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brawl Guys - Game Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            padding: 10px;
+            border-radius: 12px;
+            width: fit-content;
+            margin: 0 auto;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 40px rgba(240, 240, 240, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .game-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #87CEEB, #4682B4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(135, 206, 235, 0.3);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .game-title {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-white">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-purple-400">Chezbur's Funhouse</a>
+            <div class="flex items-center gap-6">
+                <a href="/" class="hover:text-purple-400">Home</a>
+                <a href="/#games" class="hover:text-purple-400">Games</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Container -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="game-title">Brawl Guys</h1>
+        <div class="game-container">
+            <iframe 
+                id="innerFrame" 
+                name="innerFrame" 
+                sandbox="allow-scripts allow-popups allow-forms allow-same-origin allow-popups-to-escape-sandbox allow-downloads" 
+                frameborder="0" 
+                allowfullscreen="" 
+                src="https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/139948058740159493/files/index.html" 
+                style="width: 800px; height: 600px; overflow: auto;">
+            </iframe>
+        </div>
+        
+        <!-- Game Controls/Instructions -->
+        <div class="mt-6 bg-gray-800 rounded-lg p-6">
+            <h2 class="text-xl font-bold mb-3">How to Play Brawl Guys</h2>
+            <p class="text-gray-300">
+                Battle with friends or solo in multiple game modes! Choose your favorite character and compete in fast-paced 3v3 multiplayer and battle royale matches!
+            </p>
+            <ul class="list-disc list-inside mt-3 text-gray-300">
+                <li>Move using on-screen controls</li>
+                <li>Tap to shoot at enemies</li>
+                <li>Collect power cubes to become stronger</li>
+                <li>Use your Super ability strategically</li>
+                <li>Team up with friends for the best experience</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center py-6 mt-12">
+        <p class="text-gray-400">© 2024 Game Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
