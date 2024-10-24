@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cubefield - Chezbur's Funhouse</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://happygamer1450.github.io/Ruffle-Embedded/ruffle/ruffle.js"></script>
+    <!-- Updated to official Ruffle CDN -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <style>
         .game-container {
             display: flex;
@@ -24,6 +25,8 @@
         }
         .swf {
             line-height: 0;
+            width: 620px;
+            height: 480px;
         }
         .game-title {
             text-align: center;
@@ -63,15 +66,14 @@
     <div class="max-w-7xl mx-auto px-4 py-8">
         <h1 class="game-title">Cubefield</h1>
         <div class="game-container">
-            <div class="swf" dir="ltr">
-                <embed 
-                    height="480" 
-                    pluginspage="http://www.macromedia.com/go/getflashplayer" 
-                    src="https://chuckmunch.github.io/cubefield/Cubefield (1).swf" 
-                    type="application/x-shockwave-flash" 
-                    width="620">
-                </embed>
-            </div>
+            <!-- Updated to use object tag with Ruffle auto-detection -->
+            <object
+                data="https://chuckmunch.github.io/cubefield/Cubefield (1).swf"
+                type="application/x-shockwave-flash"
+                width="620"
+                height="480">
+                <param name="allowscriptaccess" value="always">
+            </object>
         </div>
         
         <!-- Game Controls/Instructions -->

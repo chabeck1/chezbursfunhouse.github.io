@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloons TD 2 - Chezbur's Funhouse</title>
+    <title>Papa's Pizzeria - Chezbur's Funhouse</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://happygamer1450.github.io/Ruffle-Embedded/ruffle/ruffle.js"></script>
+    <!-- Updated to official Ruffle CDN -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <style>
         .game-container {
             display: flex;
@@ -24,6 +25,8 @@
         }
         .swf {
             line-height: 0;
+            width: 620px;
+            height: 480px;
         }
         .game-title {
             text-align: center;
@@ -31,7 +34,7 @@
             font-weight: bold;
             background: linear-gradient(to right, #87CEEB, #4682B4);
             -webkit-background-clip: text;
-            background-clip: text;          /* Add this line */
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(135, 206, 235, 0.3);
             margin-bottom: 1.5rem;
@@ -63,15 +66,14 @@
     <div class="max-w-7xl mx-auto px-4 py-8">
         <h1 class="game-title">Papa's Pizzeria</h1>
         <div class="game-container">
-            <div class="swf" dir="ltr">
-                <embed 
-                    height="480" 
-                    pluginspage="http://www.macromedia.com/go/getflashplayer" 
-                    src="https://chuckmunch.github.io/papas-pizzeria/papaspizzeria_v2.swf" 
-                    type="application/x-shockwave-flash" 
-                    width="620">
-                </embed>
-            </div>
+            <!-- Updated to use object tag with Ruffle auto-detection -->
+            <object
+                data="https://chuckmunch.github.io/papas-pizzeria/papaspizzeria_v2.swf"
+                type="application/x-shockwave-flash"
+                width="620"
+                height="480">
+                <param name="allowscriptaccess" value="always">
+            </object>
         </div>
         
         <!-- Game Controls/Instructions -->
