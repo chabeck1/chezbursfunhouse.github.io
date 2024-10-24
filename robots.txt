@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /games/
+Disallow: /about.html
+Disallow: /contact.html
+
+Sitemap: https://chezbursfunhouse.com/sitemap.xml
