@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortal Kombat - Chezbur's Funhouse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated to official Ruffle CDN -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ff4242, #990000);
+            padding: 10px;
+            border-radius: 12px;
+            width: fit-content;
+            margin: 0 auto;
+            box-shadow: 
+                0 0 20px rgba(255, 66, 66, 0.3),
+                0 0 40px rgba(153, 0, 0, 0.2),
+                inset 0 0 20px rgba(255, 66, 66, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .swf {
+            line-height: 0;
+            width: 620px;
+            height: 480px;
+        }
+        .game-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff4242, #990000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 66, 66, 0.3);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .game-title {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-white">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-red-500">Chezbur's Funhouse</a>
+            <div class="flex items-center gap-6">
+                <a href="/" class="hover:text-red-500">Home</a>
+                <a href="/#games" class="hover:text-red-500">Games</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Container -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="game-title">Mortal Kombat</h1>
+        <div class="game-container">
+            <!-- Updated to use object tag with Ruffle auto-detection -->
+            <object
+                data="https://chuckmunch.github.io/mortal-kombat/1374161751.swf"
+                type="application/x-shockwave-flash"
+                width="620"
+                height="480">
+                <param name="allowscriptaccess" value="always">
+            </object>
+        </div>
+        
+        <!-- Game Controls/Instructions -->
+        <div class="mt-6 bg-gray-800 rounded-lg p-6">
+            <h2 class="text-xl font-bold mb-3">How to Play Mortal Kombat</h2>
+            <p class="text-gray-300">
+                Fight your way through legendary warriors in this classic fighting game. Master special moves and combos to defeat your opponents!
+            </p>
+            <ul class="list-disc list-inside mt-3 text-gray-300">
+                <li>Arrow Keys: Move character and jump</li>
+                <li>A, S, D: Light, Medium, and Heavy Punch</li>
+                <li>Z, X, C: Light, Medium, and Heavy Kick</li>
+                <li>Combine moves for special attacks and fatalities</li>
+            </ul>
+            <div class="mt-4 p-4 bg-red-900 rounded-lg">
+                <h3 class="text-lg font-bold mb-2">Pro Tips</h3>
+                <ul class="list-disc list-inside text-gray-300">
+                    <li>Learn your character's special moves</li>
+                    <li>Block to avoid taking damage</li>
+                    <li>Practice combo chains</li>
+                    <li>Time your attacks wisely</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center py-6 mt-12">
+        <p class="text-gray-400">© 2024 Chezbur's Funhouse. All rights reserved.</p>
+    </footer>
+</body>
+</html>

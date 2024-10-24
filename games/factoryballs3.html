@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory Balls 3 - Chezbur's Funhouse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated to official Ruffle CDN -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #3498db, #2c3e50);
+            padding: 10px;
+            border-radius: 12px;
+            width: fit-content;
+            margin: 0 auto;
+            box-shadow: 
+                0 0 20px rgba(52, 152, 219, 0.3),
+                0 0 40px rgba(44, 62, 80, 0.2),
+                inset 0 0 20px rgba(52, 152, 219, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .swf {
+            line-height: 0;
+            width: 620px;
+            height: 480px;
+        }
+        .game-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(52, 152, 219, 0.3);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .game-title {
+            animation: rotate 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-white">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-800 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-blue-400">Chezbur's Funhouse</a>
+            <div class="flex items-center gap-6">
+                <a href="/" class="hover:text-blue-400">Home</a>
+                <a href="/#games" class="hover:text-blue-400">Games</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Container -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="game-title">Factory Balls 3</h1>
+        <div class="game-container">
+            <!-- Updated to use object tag with Ruffle auto-detection -->
+            <object
+                data="https://chuckmunch.github.io/factory-balls-3/factory-balls-3.swf"
+                type="application/x-shockwave-flash"
+                width="620"
+                height="480">
+                <param name="allowscriptaccess" value="always">
+            </object>
+        </div>
+        
+        <!-- Game Controls/Instructions -->
+        <div class="mt-6 bg-gray-800 rounded-lg p-6">
+            <h2 class="text-xl font-bold mb-3">How to Play Factory Balls 3</h2>
+            <p class="text-gray-300">
+                Create exact copies of the target ball by using various tools and machines in the correct order. Each level presents a new challenge with different patterns and tools.
+            </p>
+            <ul class="list-disc list-inside mt-3 text-gray-300">
+                <li>Click and drag tools to apply them to the ball</li>
+                <li>Use paint buckets to color sections of the ball</li>
+                <li>Apply patterns in the correct order to match the target</li>
+                <li>Use the reset button if you make a mistake</li>
+            </ul>
+            <div class="mt-4 p-4 bg-blue-900 rounded-lg">
+                <h3 class="text-lg font-bold mb-2">Tips for Success</h3>
+                <ul class="list-disc list-inside text-gray-300">
+                    <li>Pay attention to the order of operations</li>
+                    <li>Some tools can be used multiple times</li>
+                    <li>Look carefully at the pattern details</li>
+                    <li>Remember successful combinations for future levels</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center py-6 mt-12">
+        <p class="text-gray-400">© 2024 Chezbur's Funhouse. All rights reserved.</p>
+    </footer>
+</body>
+</html>
